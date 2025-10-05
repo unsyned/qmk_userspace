@@ -60,7 +60,8 @@ combo_t key_combos[] = {
 const key_override_t del_override = ko_make_basic(MOD_MASK_SHIFT, LT(1, KC_BSPC), KC_DEL);
 
 const key_override_t ltab_override = ko_make_basic(MOD_BIT(KC_LSFT), LT(2, KC_SPC), KC_TAB);
-const key_override_t rtab_override = ko_make_basic(MOD_BIT(KC_RSFT), LT(2, KC_SPC), KC_TAB);
+// on keyboards that have the layers combined with the space or backspace keys, must disable the override for shift tab functionality
+// const key_override_t rtab_override = ko_make_basic(MOD_BIT(KC_RSFT), LT(2, KC_SPC), KC_TAB);
 
 const key_override_t lcomma_override = ko_make_basic(MOD_BIT(KC_LSFT), KC_COMM, KC_SCLN);
 const key_override_t rcomma_override = ko_make_basic(MOD_BIT(KC_RSFT), KC_COMM, KC_SCLN);
@@ -76,7 +77,7 @@ const key_override_t rdot_override = ko_make_basic(MOD_BIT(KC_RSFT), KC_DOT, KC_
 const key_override_t *key_overrides[] = {
     &del_override,
     &ltab_override,
-    &rtab_override,
+    // &rtab_override,
     &lcomma_override,
     &rcomma_override,
     &ldot_override,
@@ -89,8 +90,9 @@ bool is_flow_tap_key(uint16_t keycode) {
     }
     switch (get_tap_keycode(keycode)) {
         // flow tap enabled for all alphas excepting colemak homing tn
-        case KC_SPC:
-        case KC_BSPC:
+        // removing backspace and space as flow tap continue/enable keys because they are lt/mt keys
+        // case KC_SPC:
+        // case KC_BSPC:
         case KC_A ... KC_M:
         case KC_O ... KC_S:
         case KC_U ... KC_Z:
