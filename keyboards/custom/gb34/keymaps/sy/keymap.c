@@ -15,15 +15,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                         KC_RALT, MO(4), KC_SPC, KC_SPC, MO(3), KC_LGUI
     //                         ),
     // symbol
+    // LCTL_T(KC_C), LALT_T(KC_R), LGUI_T(KC_S), LSFT_T(KC_T), KC_G, KC_ENT, KC_M, RSFT_T(KC_N), RGUI_T(KC_E), RALT_T(KC_I), RCTL_T(KC_A),
     [1] = LAYOUT(KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE, KC_GRV,
-                            KC_LABK, KC_LBRC, KC_LCBR, KC_LPRN, KC_BSLS, _______, KC_PIPE, KC_RPRN, KC_RCBR, KC_RBRC, KC_RABK,
+                            LCTL_T(KC_LABK), LALT_T(KC_LBRC), LGUI_T(KC_LCBR), LSFT_T(KC_LPRN), KC_BSLS, _______, KC_PIPE, RSFT_T(KC_RPRN), RGUI_T(KC_RCBR), RALT_T(KC_RBRC), RCTL_T(KC_RABK),
                             KC_BSLS, KC_TILDE, KC_GRV, KC_COLN, KC_SCLN, _______, KC_UNDS, KC_MINUS, KC_PLUS, KC_EQL, KC_QUES,
                             _______, _______, _______, _______, _______, _______, _______, KC_ESC, KC_TAB, _______, _______),
     // nav
-    [2] = LAYOUT(KC_MINUS, KC_7, KC_8, KC_9, KC_SLSH, _______, KC_PGUP, KC_HOME, KC_UP, KC_END, KC_INS,
-                            KC_MINUS, KC_4, KC_5, KC_6, KC_ASTR, _______, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,
-                            KC_PLUS, KC_1, KC_2, KC_3, KC_TAB, _______, KC_PSCR, CW_TOGG, KC_CAPS, KC_RSFT, OSL(4),
-                            _______, _______, _______, KC_0, _______, KC_ENT, _______, _______, _______,_______,_______),
+    [2] = LAYOUT(KC_MINUS, KC_7, KC_8, KC_9, KC_COMM, _______, KC_PGUP, KC_HOME, KC_UP, KC_END, KC_INS,
+                            LCTL_T(KC_0), LALT_T(KC_1), LGUI_T(KC_2), LSFT_T(KC_3), KC_COLN, _______, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,
+                            KC_PLUS, KC_4, KC_5, KC_6, KC_DOT, _______, KC_PSCR, CW_TOGG, KC_CAPS, KC_RSFT, OSL(4),
+                            _______, _______, _______, KC_TAB, _______, KC_ENT, _______, _______, _______,_______,_______),
     // gaming num - it functions with esdf.
     // [4] = LAYOUT(_______, KC_1, KC_2,_______, KC_3, KC_4,_______,_______,_______,_______,_______,_______,
     //                         _______, KC_6, _______, _______, _______, KC_5,_______,_______,_______,_______,_______,_______,
@@ -31,9 +32,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                         _______,_______,_______,_______,_______,_______),
     // fn
     // TODO: add toggle gaming layer and qwerty
-    [4] = LAYOUT(_______, KC_F12,KC_F7, KC_F8, KC_F9,_______,_______,_______,_______, _______,_______,
-                            _______, KC_F11, KC_F4, KC_F5, KC_F6,_______,_______,_______,_______,_______,_______,
-                            _______, KC_F10, KC_F1, KC_F2, KC_F3,_______,QK_BOOT,_______,_______,_______,_______,
+    [4] = LAYOUT(KC_F12,KC_F7, KC_F8, KC_F9,_______, _______,_______,_______,_______, _______,_______,
+                            KC_F11, KC_F4, KC_F5, KC_F6,_______,_______,_______,_______,_______,_______,_______,
+                            KC_F10, KC_F1, KC_F2, KC_F3,_______,_______,QK_BOOT,_______,_______,_______,_______,
                             _______,_______,_______,_______,_______,_______,_______,_______, _______, _______,_______),
     // [_GAMING] = LAYOUT_split_3x6_3(),
     // [_SYMBOL] = LAYOUT_split_3x6_3(),
