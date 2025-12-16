@@ -105,3 +105,58 @@ bool is_flow_tap_key(uint16_t keycode) {
     }
     return false;
 }
+
+// qmk will bit mask away the shift from the mod tap on the sym layer. so we intercept the mod tap instead and send the appropriate character
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LCTL_T(KC_LABK):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_LABK);
+                return false;        // Return false to ignore further processing of key
+            }
+            break;
+        case LALT_T(KC_LBRC):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_LBRC);
+                return false;        // Return false to ignore further processing of key
+            }
+            break;
+        case LGUI_T(KC_LCBR):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_LCBR);
+                return false;        // Return false to ignore further processing of key
+            }
+            break;
+        case LSFT_T(KC_LPRN):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_LPRN);
+                return false;        // Return false to ignore further processing of key
+            }
+            break;
+        case RSFT_T(KC_RPRN):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_RPRN);
+                return false;        // Return false to ignore further processing of key
+            }
+            break;
+        case RGUI_T(KC_RCBR):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_RCBR);
+                return false;        // Return false to ignore further processing of key
+            }
+            break;
+        case RALT_T(KC_RBRC):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_RBRC);
+                return false;        // Return false to ignore further processing of key
+            }
+            break;
+        case RCTL_T(KC_RABK):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_RABK);
+                return false;        // Return false to ignore further processing of key
+            }
+            break;
+    }
+    return true;
+}
