@@ -22,7 +22,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // LCTL_T(KC_C), LALT_T(KC_R), LGUI_T(KC_S), LSFT_T(KC_T), KC_G, KC_ENT, KC_M, RSFT_T(KC_N), RGUI_T(KC_E), RALT_T(KC_I), RCTL_T(KC_A),
     [1] = LAYOUT(KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE, KC_GRV,
                             LCTL_T(KC_LABK), LALT_T(KC_LBRC), LGUI_T(KC_LCBR), LSFT_T(KC_LPRN), KC_BSLS, _______, KC_PIPE, RSFT_T(KC_RPRN), RGUI_T(KC_RCBR), RALT_T(KC_RBRC), RCTL_T(KC_RABK),
-                            KC_BSLS, KC_TILDE, KC_GRV, KC_COLN, KC_SCLN, _______, KC_UNDS, KC_MINUS, KC_PLUS, KC_EQL, KC_QUES,
+                            KC_BSLS, KC_COLN, KC_SCLN, KC_TILDE, KC_GRV, _______, KC_UNDS, KC_MINUS, KC_PLUS, KC_EQL, KC_QUES,
                             _______, _______, _______, _______, _______, _______, _______, KC_ESC, KC_TAB, _______, _______),
     // nav
     [2] = LAYOUT(KC_MINUS, KC_7, KC_8, KC_9, KC_COMM, _______, KC_PGUP, KC_HOME, KC_UP, KC_END, KC_INS,
