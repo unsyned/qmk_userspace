@@ -1,12 +1,16 @@
 #include QMK_KEYBOARD_H
 
+enum {
+    TD_SHIFT_CW,
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // colemak
     [0] = LAYOUT(KC_J, KC_L, KC_Y, KC_P, KC_K, KC_TAB, KC_Z, KC_F, KC_O, KC_U, KC_QUOT,
                             LCTL_T(KC_C), LALT_T(KC_R), LGUI_T(KC_S), LSFT_T(KC_T), KC_G, KC_ENT, KC_M, RSFT_T(KC_N), RGUI_T(KC_E), RALT_T(KC_I), RCTL_T(KC_A),
                             KC_W, KC_Q, KC_V, KC_D, KC_B, KC_LSFT, KC_X, KC_H, KC_SLSH, KC_COMM, KC_DOT,
                             // KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F11, KC_F12
-                            _______, KC_ESC, _______, KC_ESC, _______, LT(1, KC_BSPC), _______, LT(2, KC_SPC), KC_ENT, KC_ENT, _______
+                            _______, TD(TD_SHIFT_CW), _______, TD(TD_SHIFT_CW), _______, LT(1, KC_BSPC), _______, LT(2, KC_SPC), KC_ENT, KC_ENT, _______
                             ),
     // qwerty
     // [1] = LAYOUT(KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPC,
@@ -47,6 +51,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                         _______, _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,
     //                         _______,_______,_______,_______,_______,_______)
     //                         ),
+};
+
+
+void td_shift_cw_finished(tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        set_oneshot_mods(MOD_BIT(KC_LSFT));
+    } else if (state->count == 2) {
+        // TODO: see if I can get this to turn back off on reactivation
+        caps_word_toggle();
+    }
+}
+
+void td_shift_cw_reset(tap_dance_state_t *state, void *user_data) {
+    // nothing to unregister
+}
+
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_SHIFT_CW] = ACTION_TAP_DANCE_FN_ADVANCED(
+        NULL,
+        td_shift_cw_finished,
+        td_shift_cw_reset
+    ),
 };
 
 // todo: when I'm not being lazy, change this to be only on fletchling layer
