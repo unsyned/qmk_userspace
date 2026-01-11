@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 // todo: when I'm not being lazy, change this to be only on fletchling layer
-// const uint16_t PROGMEM esc_combo[] = {KC_L, KC_Y, COMBO_END};
+// const uint16_t PROGMEM esc_combo[] = {KC_J, KC_L, COMBO_END};
 const uint16_t PROGMEM enter_combo[] = {KC_SLSH, KC_COMMA, COMBO_END};
 
 combo_t key_combos[] = {

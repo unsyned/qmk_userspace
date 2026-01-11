@@ -32,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                             _______, KC_TAB, KC_ENT, _______, _______, _______),
     // fn
     // TODO: add toggle gaming layer and qwerty
-    [5] = LAYOUT_split_3x6_3(RGB_TOG, KC_F12,KC_F7,KC_F8,KC_F9,_______,_______,_______,_______,_______,_______,_______,
+    [5] = LAYOUT_split_3x6_3(RM_TOGG, KC_F12,KC_F7,KC_F8,KC_F9,_______,_______,_______,_______,_______,_______,_______,
                             _______, KC_F11,KC_F4,KC_F5,KC_F6,_______,_______,_______,_______,_______, _______,_______,
                             _______, KC_F10,KC_F1,KC_F2,KC_F3,_______,_______,_______,_______,_______,_______,_______,
                             _______,_______,_______,_______,_______,_______)
@@ -42,8 +42,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // [_FN] = LAYOUT_split_3x6_3()
 };
 
-const uint16_t PROGMEM esc_combo[] = {KC_X, KC_C, COMBO_END};
-const uint16_t PROGMEM enter_combo[] = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM esc_combo[] = {KC_J, KC_L, COMBO_END};
+const uint16_t PROGMEM enter_combo[] = {KC_SLSH, KC_COMM, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, KC_ESC),
