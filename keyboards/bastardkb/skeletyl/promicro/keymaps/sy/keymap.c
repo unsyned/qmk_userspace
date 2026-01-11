@@ -5,12 +5,17 @@
 // defines all LAYOUT_* macros
 // defines _______, custom keycodes, features, etc.
 
+enum {
+    TD_SHIFT_CW,
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // colemak
     [0] = LAYOUT_split_3x5_3(KC_J, KC_L, KC_Y, KC_P, KC_K, KC_Z, KC_F, KC_O, KC_U, KC_QUOT,
                             LCTL_T(KC_C), LALT_T(KC_R), LGUI_T(KC_S), LSFT_T(KC_T), KC_G, KC_M, RSFT_T(KC_N), RGUI_T(KC_E), RALT_T(KC_I), RCTL_T(KC_A),
                             KC_W, KC_Q, KC_V, KC_D, KC_B, KC_X, KC_H, KC_SLSH, KC_COMM, KC_DOT,
-                            LT(1, KC_BSPC), KC_ESC, _______, _______, KC_ENT, LT(2, KC_SPC)
+                            // LT(1, KC_BSPC), OS_LSFT, KC_ESC, _______, KC_ENT, LT(2, KC_SPC)
+                            LT(1, KC_BSPC), TD(TD_SHIFT_CW), KC_ESC, _______, KC_ENT, LT(2, KC_SPC)
                             // KC_BSPC, MO(1), KC_ESC, KC_ENT, MO(2), KC_SPC // for if we want to separate the layer and tap again
                             ),
     // // qwerty
@@ -29,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // symbol
     [1] = LAYOUT_split_3x5_3(KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE, KC_GRV,
                             LCTL_T(KC_LABK), LALT_T(KC_LBRC), LGUI_T(KC_LCBR), LSFT_T(KC_LPRN), KC_BSLS, KC_PIPE, KC_RPRN, KC_RCBR, KC_RBRC, KC_RABK,
-                            KC_BSLS, KC_TILDE, KC_GRV, KC_COLN, KC_SCLN, KC_UNDS, KC_MINUS, KC_PLUS, KC_EQL, KC_QUES,
+                            _______, KC_COLN, KC_SCLN, _______, KC_GRV, KC_UNDS, KC_MINUS, KC_PLUS, KC_EQL, KC_QUES,
                             _______, _______, _______, _______, KC_TAB, KC_ESC),
     // nav
     [2] = LAYOUT_split_3x5_3(KC_MINUS, KC_7, KC_8, KC_9, KC_COMM, KC_PGUP, KC_HOME, KC_UP, KC_END, KC_INS,
@@ -42,14 +47,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                             KC_F11,KC_F4,KC_F5,KC_F6,_______,_______,_______,_______,_______,_______,
                             KC_F10,KC_F1,KC_F2,KC_F3,_______,_______,_______,_______,_______,_______,
                             _______,_______,_______,_______,_______,_______)
-    // [_GAMING] = LAYOUT_split_3x6_3(),
-    // [_SYMBOL] = LAYOUT_split_3x6_3(),
-    // [_NAVIGATION] = LAYOUT_split_3x6_3(),
-    // [_FN] = LAYOUT_split_3x6_3()
 };
 
 
-const uint16_t PROGMEM esc_combo[] = {KC_J, KC_L, COMBO_END};
+void td_shift_cw_finished(tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        set_oneshot_mods(MOD_BIT(KC_LSFT));
+    } else if (state->count == 2) {
+        // TODO: see if I can get this to turn back off on reactivation
+        caps_word_toggle();
+    }
+}
+
+void td_shift_cw_reset(tap_dance_state_t *state, void *user_data) {
+    // nothing to unregister
+}
+
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_SHIFT_CW] = ACTION_TAP_DANCE_FN_ADVANCED(
+        NULL,
+        td_shift_cw_finished,
+        td_shift_cw_reset
+    ),
+};
+
+
+const uint16_t PROGMEM esc_combo[] = {KC_L, KC_Y, COMBO_END};
 const uint16_t PROGMEM enter_combo[] = {KC_SLSH, KC_COMM, COMBO_END};
 
 combo_t key_combos[] = {
@@ -99,6 +122,7 @@ bool is_flow_tap_key(uint16_t keycode) {
         case KC_COMM:
         case KC_SCLN:
         case KC_SLSH:
+        case KC_LSFT:
             return true;
     }
     return false;

@@ -3,6 +3,7 @@
 // #define DYNAMIC_KEYMAP_LAYER_COUNT 5
 #define COMBO_TERM 30
 #define PERMISSIVE_HOLD
+#define TAPPING_TERM 175
 #define FLOW_TAP_TERM 125
 
 #ifdef KEYBOARD_bastardkb_skeletyl_promicro
