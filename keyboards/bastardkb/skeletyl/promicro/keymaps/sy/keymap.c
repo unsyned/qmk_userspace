@@ -89,8 +89,9 @@ bool is_flow_tap_key(uint16_t keycode) {
     }
     switch (get_tap_keycode(keycode)) {
         // flow tap enabled for all alphas excepting colemak homing tn
-        case KC_SPC:
-        case KC_BSPC:
+        // removing backspace and space as flow tap continue/enable keys because they are lt/mt keys
+        // case KC_SPC:
+        // case KC_BSPC:
         case KC_A ... KC_M:
         case KC_O ... KC_S:
         case KC_U ... KC_Z:
