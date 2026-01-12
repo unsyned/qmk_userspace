@@ -2,6 +2,7 @@
 
 #define COMBO_TERM 30
 #define PERMISSIVE_HOLD
+#define TAPPING_TERM 175
 #define FLOW_TAP_TERM 150
 
 // Solve early init issues. (on dock and some operating systems/distros)

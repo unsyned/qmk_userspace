@@ -122,6 +122,7 @@ bool is_flow_tap_key(uint16_t keycode) {
         case KC_COMM:
         case KC_SCLN:
         case KC_SLSH:
+        // TODO: REMOVE?
         case KC_LSFT:
             return true;
     }
