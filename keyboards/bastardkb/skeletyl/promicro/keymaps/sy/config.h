@@ -3,8 +3,12 @@
 // #define DYNAMIC_KEYMAP_LAYER_COUNT 5
 #define COMBO_TERM 30
 #define PERMISSIVE_HOLD
+// #define CHORDAL_HOLD
 #define TAPPING_TERM 175
 #define FLOW_TAP_TERM 125
+#define SPECULATIVE_HOLD
+// #define ONESHOT_TAP_TOGGLE 5  /* Tapping this number of times holds the key until tapped once again. */
+// #define ONESHOT_TIMEOUT 5000  /* Time (in ms) before the one shot key is released */
 
 #ifdef KEYBOARD_bastardkb_skeletyl_promicro
 #    undef MATRIX_COL_PINS

@@ -5,3 +5,6 @@ CAPS_WORD_ENABLE = yes
 COMBO_ENABLE = yes
 KEY_OVERRIDE_ENABLE = yes
 TAP_DANCE_ENABLE = yes
+
+# freeing up some space
+LTO_ENABLE = yes
