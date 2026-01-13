@@ -4,16 +4,17 @@
 // includes the keyboard’s keyboard.h
 // defines all LAYOUT_* macros
 // defines _______, custom keycodes, features, etc.
+#include "sy.h"
 
 enum {
     TD_SHIFT_CW,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    // colemak
-    [0] = LAYOUT_split_3x5_3(KC_J, KC_L, KC_Y, KC_P, KC_K, KC_Z, KC_F, KC_O, KC_U, KC_QUOT,
-                            LCTL_T(KC_C), LALT_T(KC_R), LGUI_T(KC_S), LSFT_T(KC_T), KC_G, KC_M, RSFT_T(KC_N), RGUI_T(KC_E), RALT_T(KC_I), RCTL_T(KC_A),
-                            KC_W, KC_Q, KC_V, KC_D, KC_B, KC_X, KC_H, KC_SLSH, KC_COMM, KC_DOT,
+    // canary
+    [0] = LAYOUT_sy_3x5(___5COL_BASE_LEFT_ROW1___, ___5COL_BASE_RIGHT_ROW1___,
+                            ___5COL_BASE_LEFT_ROW2___, ___5COL_BASE_RIGHT_ROW2___,
+                            ___5COL_BASE_LEFT_ROW3___, ___5COL_BASE_RIGHT_ROW3___,
                             // LT(1, KC_BSPC), OS_LSFT, KC_ESC, _______, KC_ENT, LT(2, KC_SPC)
                             LT(1, KC_BSPC), TD(TD_SHIFT_CW), KC_ESC, _______, KC_ENT, LT(2, KC_SPC)
                             // KC_BSPC, MO(1), KC_ESC, KC_ENT, MO(2), KC_SPC // for if we want to separate the layer and tap again

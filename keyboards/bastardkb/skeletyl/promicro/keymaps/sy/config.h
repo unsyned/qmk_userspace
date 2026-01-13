@@ -10,6 +10,11 @@
 // #define ONESHOT_TAP_TOGGLE 5  /* Tapping this number of times holds the key until tapped once again. */
 // #define ONESHOT_TIMEOUT 5000  /* Time (in ms) before the one shot key is released */
 
+/* NOTE:
+ * this is a rev 1 version of the board.
+ * bkb did a revision and dropped support for the original
+ * a few years ago. the new version uses a different pinout.
+ * so the following patch is required. */
 #ifdef KEYBOARD_bastardkb_skeletyl_promicro
 #    undef MATRIX_COL_PINS
 #    undef MATRIX_ROW_PINS
