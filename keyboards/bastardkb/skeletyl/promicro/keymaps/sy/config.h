@@ -4,7 +4,7 @@
 #define COMBO_TERM 30
 #define PERMISSIVE_HOLD
 // #define CHORDAL_HOLD
-#define TAPPING_TERM 175
+#define TAPPING_TERM 200
 #define FLOW_TAP_TERM 125
 #define SPECULATIVE_HOLD
 // #define ONESHOT_TAP_TOGGLE 5  /* Tapping this number of times holds the key until tapped once again. */
