@@ -1,5 +1,7 @@
 #include "quantum.h"
 
+#define TAP_DANCE_TERM 250
+
 /* layers */
 enum layers {
     _BASE,

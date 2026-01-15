@@ -3,8 +3,10 @@
 // #define DYNAMIC_KEYMAP_LAYER_COUNT 5
 #define COMBO_TERM 30
 #define PERMISSIVE_HOLD
+// #define HOLD_ON_OTHER_KEY_PRESS
 // #define CHORDAL_HOLD
-#define TAPPING_TERM 200
+#define TAPPING_TERM 160
+#define TAPPING_TERM_PER_KEY
 #define FLOW_TAP_TERM 125
 #define SPECULATIVE_HOLD
 // #define ONESHOT_TAP_TOGGLE 5  /* Tapping this number of times holds the key until tapped once again. */

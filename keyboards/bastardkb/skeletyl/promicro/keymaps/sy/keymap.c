@@ -1,3 +1,5 @@
+#include <stdint.h>
+#include "sys/types.h"
 #include QMK_KEYBOARD_H
 // supposedly, this
 // includes quantum.h
@@ -9,6 +11,25 @@
 enum {
     TD_SHIFT_CW,
 };
+
+typedef enum {
+    TD_NONE,
+    TD_UNKNOWN,
+    TD_SINGLE_TAP,
+    TD_SINGLE_HOLD,
+    TD_DOUBLE_SINGLE_TAP
+} td_state_t;
+
+// global tapdance state instance
+static td_state_t td_state;
+
+// const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
+//     LAYOUT_split_3x5_3(
+//         'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R',
+//         'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R',
+//         'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R',
+//                   '*', '*', '*',  '*', '*', '*'
+//     );
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // canary
@@ -51,17 +72,50 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
-void td_shift_cw_finished(tap_dance_state_t *state, void *user_data) {
+td_state_t cur_dance(tap_dance_state_t *state) {
     if (state->count == 1) {
-        set_oneshot_mods(MOD_BIT(KC_LSFT));
-    } else if (state->count == 2) {
-        // TODO: see if I can get this to turn back off on tapping 3 times
-        caps_word_toggle();
+        if (state->interrupted || !state->pressed) return TD_SINGLE_TAP;
+        else return TD_SINGLE_HOLD;
+    }
+
+    if (state->count == 2) return TD_DOUBLE_SINGLE_TAP;
+    else return TD_UNKNOWN;
+}
+
+void td_shift_cw_finished(tap_dance_state_t *state, void *user_data) {
+    // if (state->count == 1) {
+    //     set_oneshot_mods(MOD_BIT(KC_LSFT));
+    // } else if (state->count == 2) {
+    //     // TODO: see if I can get this to turn back off on tapping 3 times
+    //     caps_word_toggle();
+    // }
+
+    td_state = cur_dance(state);
+    switch (td_state) {
+        case TD_SINGLE_TAP:
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            break;
+        case TD_SINGLE_HOLD:
+            register_mods(MOD_BIT(KC_LSFT));
+            break;
+        case TD_DOUBLE_SINGLE_TAP:
+            caps_word_toggle();
+            break;
+        default:
+            break;
     }
 }
 
 void td_shift_cw_reset(tap_dance_state_t *state, void *user_data) {
     // nothing to unregister
+    switch (td_state) {
+        // cases for SINGLE_TAP and DOUBLE_SINGLE_TAP get reset on their own
+        case TD_SINGLE_HOLD:
+            unregister_mods(MOD_BIT(KC_LSFT));
+            break;
+        default:
+            break;
+    }
 }
 
 tap_dance_action_t tap_dance_actions[] = {
@@ -194,5 +248,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
     }
     return true;
+}
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
+            return TAP_DANCE_TERM;
+        default:
+            return TAPPING_TERM;
+    }
 }
 
