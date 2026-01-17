@@ -12,6 +12,8 @@
 // #define ONESHOT_TAP_TOGGLE 5  /* Tapping this number of times holds the key until tapped once again. */
 // #define ONESHOT_TIMEOUT 5000  /* Time (in ms) before the one shot key is released */
 
+#define ERROR_CODE_DISCONNECT_COUNT 20
+
 /* NOTE:
  * this is a rev 1 version of the board.
  * bkb did a revision and dropped support for the original

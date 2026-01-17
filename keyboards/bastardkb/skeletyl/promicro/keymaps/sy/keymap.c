@@ -46,13 +46,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                         KC_Z, KC_X, KC_C, KC_V, KC_B, KC_M, KC_N, KC_COMM, KC_DOT, KC_SLSH,
     //                         KC_ESC, MO(3), KC_BSPC, KC_SPC, MO(4), KC_ENT
     //                         ),
-    // gaming
-    // TODO: add gaming num layer
-    // [2] = LAYOUT_split_3x5_3(KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPC,
-    //                         LCTL_T(KC_ESC), KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
-    //                         KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_M, KC_N, KC_COMM, KC_DOT, KC_SLSH, RSFT_T(KC_ENT),
-    //                         KC_RALT, MO(3), KC_SPC, KC_SPC, MO(4), KC_LGUI
-    //                         ),
     // symbol
     [1] = LAYOUT_split_3x5_3(KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE, KC_GRV,
                             LCTL_T(KC_LABK), LALT_T(KC_LBRC), LGUI_T(KC_LCBR), LSFT_T(KC_LPRN), KC_BSLS, KC_PIPE, KC_RPRN, KC_RCBR, KC_RBRC, KC_RABK,
@@ -93,10 +86,10 @@ void td_shift_cw_finished(tap_dance_state_t *state, void *user_data) {
     td_state = cur_dance(state);
     switch (td_state) {
         case TD_SINGLE_TAP:
-            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            set_oneshot_mods(MOD_BIT(KC_RSFT));
             break;
         case TD_SINGLE_HOLD:
-            register_mods(MOD_BIT(KC_LSFT));
+            register_mods(MOD_BIT(KC_RSFT));
             break;
         case TD_DOUBLE_SINGLE_TAP:
             caps_word_toggle();
@@ -111,7 +104,7 @@ void td_shift_cw_reset(tap_dance_state_t *state, void *user_data) {
     switch (td_state) {
         // cases for SINGLE_TAP and DOUBLE_SINGLE_TAP get reset on their own
         case TD_SINGLE_HOLD:
-            unregister_mods(MOD_BIT(KC_LSFT));
+            unregister_mods(MOD_BIT(KC_RSFT));
             break;
         default:
             break;
@@ -179,6 +172,29 @@ bool is_flow_tap_key(uint16_t keycode) {
     return false;
 }
 
+bool caps_word_press_user(uint16_t keycode) {
+    // TODO: change this so that it is in it's own function
+    // that can be called by boards with a symbol layer
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        // removing minus from shifted list since we have it on its own key
+        // case KC_MINS:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
+    }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         // below is to allow me to backspace when I mess up the one shot shift instead of deleting
@@ -190,6 +206,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
                 clear_oneshot_mods();
                 tap_code(KC_BSPC);
+                // NOTE: for a passthrough, uncomment the following line
+                // set_oneshot_mods(MOD_BIT(KC_LSFT));
 
                 return false;        // Return false to ignore further processing of key
             }
