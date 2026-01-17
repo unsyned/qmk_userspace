@@ -86,7 +86,7 @@ void td_shift_cw_finished(tap_dance_state_t *state, void *user_data) {
     td_state = cur_dance(state);
     switch (td_state) {
         case TD_SINGLE_TAP:
-            set_oneshot_mods(MOD_BIT(KC_RSFT));
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
             break;
         case TD_SINGLE_HOLD:
             register_mods(MOD_BIT(KC_RSFT));
