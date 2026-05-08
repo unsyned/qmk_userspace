@@ -57,3 +57,7 @@ This can also be used to control which fork is used, though only upstream `qmk_f
 1. (First time only) `git submodule add https://github.com/qmk/qmk_firmware.git`
 1. (To update) `git submodule update --init --recursive`
 1. Commit your changes to your userspace repository
+
+
+# Disclaimer:
+I moved the corne max/rp2g into a me/max hierarchy purely for the ease of typig/compiling with qmk from the command line. I'm not trying to claim the work for myself - simply taking advangate of the fact that they did not merge the board upstream.

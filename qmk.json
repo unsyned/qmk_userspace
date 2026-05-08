@@ -2,6 +2,7 @@
     "userspace_version": "1.1",
     "build_targets": [
         ["boardsource/unicorne", "sy"],
-        ["bastardkb/skeletyl/promicro", "sy"]
+        ["bastardkb/skeletyl/promicro", "sy"],
+        ["me/max", "sy"]
     ]
 }
