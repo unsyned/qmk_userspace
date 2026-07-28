@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_W, KC_L, KC_Y, KC_P, KC_B, KC_Z, KC_F, KC_O, KC_U, KC_QUOT,
         LCTL_T(KC_C), LALT_T(KC_R), LGUI_T(KC_S), LSFT_T(KC_T), KC_G, MS_LEFT, KC_M, RSFT_T(KC_N), RGUI_T(KC_E), RALT_T(KC_I), RCTL_T(KC_A),
         KC_Q, TD(J_MAC_CUT), TD(V_MAC_COPY), TD(D_MAC_PASTE), KC_K, KC_X, KC_H, KC_SLSH, KC_COMM, KC_DOT,
-                          SCRL_MO, KC_ENT, LT(SYM, KC_SPC),  MS_MID, LT(NAV, KC_BSPC),  TD(TD_SHIFT_CW), TOG(MSE)
+                          SCRL_MO, KC_ENT, LT(SYM, KC_SPC),  MS_MID, LT(NAV, KC_BSPC),  TD(TD_SHIFT_CW), TT(MSE)
     ),
     [LIN] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -70,9 +70,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     // not sure where is most comfortable to place forward/backward buttons
     [MSE] = LAYOUT(
-        OS_LALT, MS_FOR, MS_MID, MS_BACK, OS_LSFT,          _______, _______, _______, _______, _______,
-        OS_LCTL, MS_RIGHT, SCRL_MO, MS_LEFT, OS_LGUI, _______, SCRL_MO, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______,
+        OS_LALT, MS_FOR, MS_MID, MS_BACK, OS_LSFT,          MS_RIGHT, MS_FOR, _______, _______, AM_TOG,
+        OS_LCTL, MS_RIGHT, SCRL_MO, MS_LEFT, OS_LGUI, _______, SCRL_MO, MS_MID, _______, _______, _______,
+        _______, _______, _______, _______, _______,          MS_LEFT, MS_BACK, _______, _______, _______,
                           _______, _______, _______, _______, _______, _______, _______
     )
 };

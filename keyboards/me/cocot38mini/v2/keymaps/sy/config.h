@@ -12,14 +12,15 @@
 #define TAPPING_TERM 200
 #define FLOW_TAP_TERM 125
 #define SPECULATIVE_HOLD
-#define QUICK_TAP_TERM 0
+#define QUICK_TAP_TERM 0 // define this per key to allow repeating on all tap hold keys except layer keys
 
 // trying the features in this block/paragraph out
 #define CAPS_WORD_INVERT_ON_SHIFT
 
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 #define AUTO_MOUSE_DEFAULT_LAYER MSE
-#define AUTO_MOUSE_TIME 650
+#undef AUTO_MOUSE_TIME
+#define AUTO_MOUSE_TIME 500
 #define AUTO_MOUSE_DELAY 200
 #define AUTO_MOUSE_DEBOUNCE 25
 
