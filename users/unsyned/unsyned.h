@@ -39,3 +39,23 @@ typedef struct {
         .user_data = (void *)&((tap_dance_tap_hold_t){tap, hold, 0}),               \
     }
 
+// Tap dance callback prototypes
+void tap_dance_tap_hold_finished(
+    tap_dance_state_t *state,
+    void *user_data
+);
+
+void tap_dance_tap_hold_reset(
+    tap_dance_state_t *state,
+    void *user_data
+);
+
+void td_shift_cw_finished(
+    tap_dance_state_t *state,
+    void *user_data
+);
+
+void td_shift_cw_reset(
+    tap_dance_state_t *state,
+    void *user_data
+);
