@@ -20,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC] = LAYOUT(
         KC_W, KC_L, KC_Y, KC_P, KC_B, _______, _______, KC_Z, KC_F, KC_O, KC_U, KC_QUOT,
         LCTL_T(KC_C), LALT_T(KC_R), LGUI_T(KC_S), LSFT_T(KC_T), KC_G,_______,_______, KC_M, RSFT_T(KC_N), RGUI_T(KC_E), RALT_T(KC_I), RCTL_T(KC_A),
-        KC_Q, TD(J_MAC_CUT), TD(V_MAC_COPY), TD(D_MAC_PASTE), KC_K, _______,_______,KC_X, KC_H, KC_SLSH, KC_COMM, KC_DOT,
+        KC_Q, TD(J_MAC_CUT), TD(V_MAC_COPY), TD(D_MAC_PASTE), KC_K, _______,_______,KC_X, KC_H, KC_QUES, KC_COMM, KC_DOT,
                 _______,_______,_______,KC_ENT, LT(SYM, KC_SPC),  LT(NAV, KC_BSPC),  TD(TD_SHIFT_CW),_______,_______,_______
     ),
     [LIN] = LAYOUT(
@@ -31,8 +31,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [SYM] = LAYOUT(
         KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, _______,_______,KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE, KC_GRV,
-        LCTL_T(KC_LABK), LALT_T(KC_LBRC), LGUI_T(KC_LCBR), LSFT_T(KC_LPRN), KC_BSLS, _______,_______,KC_PIPE, KC_RPRN, KC_RCBR, KC_RBRC, KC_RABK,
-        _______, KC_COLN, KC_SCLN, _______, KC_GRV, _______,_______,KC_UNDS, KC_MINUS, KC_PLUS, KC_EQL, KC_QUES,
+        LCTL_T(KC_LABK), LALT_T(KC_LBRC), LGUI_T(KC_LCBR), LSFT_T(KC_LPRN), KC_BSLS, _______,_______,KC_SLSH, KC_RPRN, KC_RCBR, KC_RBRC, KC_RABK,
+        KC_PIPE, KC_COLN, KC_SCLN, KC_COMM, KC_DOT, _______,_______,KC_UNDS, KC_MINUS, KC_PLUS, KC_EQL, KC_QUES,
                           _______,_______,_______,_______,_______,KC_ESC,_______,_______,_______,_______
     ),
     [NAV] = LAYOUT(
